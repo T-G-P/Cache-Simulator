@@ -18,9 +18,9 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    fprintf(stdout, "%s\n", argv[13]);
+    //fprintf(stdout, "%s\n", argv[13]);
     blocksize = atoi(argv[13]);
-    fprintf(stdout, "%d\n", blocksize);
+    //fprintf(stdout, "%d\n", blocksize);
     l1 = create_cache(argv[2], argv[4], blocksize);
     l2 = create_cache(argv[6], argv[8], blocksize);
     l3 = create_cache(argv[10], argv[12], blocksize);
@@ -32,17 +32,17 @@ int main(int argc, char **argv) {
     }
     char input[14];
     while ( fscanf(tracefile, "%s", input)!= EOF ) {
-        fprintf(stdout, "%s\n", input);
+        //fprintf(stdout, "%s\n", input);
         unsigned long current = strtoull(input,NULL,0);
-        fprintf(stdout, "%llu\n", current);
-        fprintf(stdout, "%d\n", l1->num_sets);
+        //fprintf(stdout, "%llu\n", current);
+        //fprintf(stdout, "%d\n", l1->num_sets);
         int index = current&(l1->num_sets )-1;;
-        fprintf(stdout, "index %d\n", index);
+        //fprintf(stdout, "index %d\n", index);
         // o not valid
         if(l1->array[index] == 0){
             l1->array[index] = current;//input;
             l1->numMisses++;
-            fprintf(stdout, "empty\n");
+            //fprintf(stdout, "empty\n");
         }
         else{
             int cacheNum = search(current, index, l1, l2, l3);
@@ -53,23 +53,23 @@ int main(int argc, char **argv) {
                 l3->array[index] = l2->array[index];
                 l2->array[index] = l1->array[index];
                 l1->array[index] = current;
-                fprintf(stdout, "miss\n");
+                //fprintf(stdout, "miss\n");
             }
             else if(cacheNum == 1){
                 l1->numHits++;
-                fprintf(stdout, "hit in l1\n");
+                //fprintf(stdout, "hit in l1\n");
             }
             else if(cacheNum == 2){
                 l1->numMisses++;
                 l2->numHits++;
-                fprintf(stdout, "hit in l2\n");
+                //fprintf(stdout, "hit in l2\n");
             }
 
             else if(cacheNum == 3){
                 l1->numMisses++;
                 l2->numMisses++;
                 l3->numHits++;
-                fprintf(stdout, "hit in l3\n");
+                //fprintf(stdout, "hit in l3\n");
             }
 
 

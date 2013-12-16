@@ -32,10 +32,10 @@ cache *create_cache(char *cachesize, char *assoc, int blocksize) {
   ret->numCapacitymisses = 0;
   ret->numColdmisses = 0;
   ret->blocksize = blocksize;
-  fprintf(stdout,"%d\n", blocksize);
-  fprintf(stdout,"%d\n", ret->blocksize);
-  ret->assoc = parseAssoc(assoc);
-  fprintf(stdout,"%d\n", ret->blocksize);
+  //fprintf(stdout,"%d\n", blocksize);
+  //fprintf(stdout,"%d\n", ret->blocksize);
+  //ret->assoc = parseAssoc(assoc);
+  //fprintf(stdout,"%d\n", ret->blocksize);
   /* Direct */
   if (ret->assoc == 0) {
     ret->setsize = 1;
@@ -48,12 +48,12 @@ cache *create_cache(char *cachesize, char *assoc, int blocksize) {
   else if (ret->assoc > 1) {
     ret->setsize = ret->assoc;
   }
-  fprintf(stdout,"%d\n", ret->blocksize);
+  //fprintf(stdout,"%d\n", ret->blocksize);
   ret->num_sets = (unsigned int)(ret->cachesize / (ret->setsize * ret->blocksize));
-  fprintf(stdout,"%d\n", ret->cachesize);
-   fprintf(stdout,"%d\n", ret->blocksize);
-      fprintf(stdout,"%d\n", ret->setsize);
-      fprintf(stdout,"%d\n", ret->blocksize);
+  //fprintf(stdout,"%d\n", ret->cachesize);
+   //fprintf(stdout,"%d\n", ret->blocksize);
+    //  fprintf(stdout,"%d\n", ret->setsize);
+     // fprintf(stdout,"%d\n", ret->blocksize);
   ret->array = (unsigned long *)malloc(ret->num_sets * sizeof(unsigned long));
   memset(ret->array, 0, ret->num_sets * sizeof(unsigned long));
   return ret;
